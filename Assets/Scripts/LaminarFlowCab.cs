@@ -21,11 +21,13 @@ public class LaminarFlowCab : MonoBehaviour
     private readonly float _optimalValueMax = .65f;
     private bool _hasDoneFirstRun = false;
     private bool _hasDamagedSample = false;
+    private Button _exposureButtonComponent;
 
     private void Start()
     {
         _dialoguePlayerComponent = GetComponent<DialoguePlayer>();
         SetUpTheInterface();
+        _exposureButtonComponent = exposureButton.GetComponent<Button>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,7 +78,7 @@ public class LaminarFlowCab : MonoBehaviour
             dialoguesLaminar[2].gameObject.SetActive(true);
             experimentImages[2].gameObject.SetActive(true);
 
-            exposureButton.gameObject.SetActive(false);
+            _exposureButtonComponent.interactable = false;
 
             StartCoroutine(EndScreenPopup(CallEndScreen));
         }
